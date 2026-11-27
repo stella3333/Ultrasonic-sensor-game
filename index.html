@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="用手掌距離駕駛飛船，穿越太空閘門。">
+<title>聲波飛行</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#080f20;color:#edf5ff}*{box-sizing:border-box}body{margin:0}main{width:min(1080px,100%);margin:auto;padding:clamp(16px,4vw,48px)}header,.controls,.stats{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between}h1{font-size:clamp(32px,6vw,58px);margin:0;letter-spacing:.08em}p{color:#b6c7df;margin:8px 0 0}.stats{justify-content:flex-start}.stats div{min-width:86px;padding:10px 14px;background:#121e35;border:1px solid #2c4162;border-radius:12px;color:#b6c7df}.stats strong{display:block;color:#fff;font-size:25px;font-variant-numeric:tabular-nums}.screen{margin:22px 0 14px;position:relative;overflow:hidden;border:1px solid #344c70;border-radius:18px;background:#101a35}canvas{display:block;width:100%;aspect-ratio:16/9;touch-action:none}.overlay{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:12px;pointer-events:none;background:#080f205c}.overlay[hidden], [hidden]{display:none}.overlay h2{margin:0;font-size:clamp(22px,5vw,44px)}.overlay p{max-width:30ch;color:#e1edfc}.controls{justify-content:flex-start}button,a.button{border:1px solid #526784;background:#172742;color:#fff;border-radius:10px;padding:10px 15px;font:inherit;font-weight:650;cursor:pointer;text-decoration:none}button:first-child{background:#a0f4df;color:#102b2e;border-color:#a0f4df}button:disabled{opacity:.55;cursor:default}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #a0f4df;outline-offset:3px}label{display:flex;align-items:center;gap:10px}input{width:min(180px,38vw);accent-color:#a0f4df}#status{min-height:1.5em}details{margin-top:18px;border-top:1px solid #2c4162;padding-top:12px;color:#c3d3e8}summary{cursor:pointer}details li{margin:8px 0}a{color:#a0f4df}
+</style>
+</head>
+<body><main>
+<header><div><h1>聲波飛行</h1><p>用手掌駕駛飛船，穿過太空閘門。</p></div><div class="stats"><div>分數<strong id="score">0</strong></div><div>最高分<strong id="best">0</strong></div><div>距離<strong id="distance">—</strong></div></div></header>
+<section class="screen" aria-label="飛行遊戲"><canvas id="game" width="960" height="540" aria-label="飛船與太空閘門"></canvas><div class="overlay" id="overlay"><h2 id="title"></h2><p id="hint"></p></div></section>
+<div class="controls"><button id="connect">連接感測器</button><button id="demo">試玩</button><label id="sliderLabel" hidden>模擬距離 <input id="slider" type="range" min="8" max="38" value="23"></label></div>
+<p id="status" role="status"></p>
+<details><summary>感測器接線與玩法</summary><ol>
+<li>以 Arduino Uno R3（5 V）搭配 HC-SR04。VCC 接 5V，GND 接 GND，TRIG 接 D9，ECHO 接 D10。</li>
+<li><a href="hand_sensor.ino" download>下載 Arduino 程式</a>，放進名為 <code>hand_sensor</code> 的資料夾後用 Arduino IDE 上傳。關閉序列監控視窗。</li>
+<li>用電腦版 Chrome 開啟遊戲，點「連接感測器」並選擇 Arduino 的連接埠。</li>
+<li>手掌在感測器前 8–38 公分移動。靠近就上升，遠離就下降。把手停在 18–28 公分約一秒，即可起飛或重新開始。每穿過一道閘門加一分。</li>
+</ol></details>
+</main><script src="game.js" defer></script></body></html>
