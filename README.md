@@ -8,8 +8,8 @@
 
 ## 接線與上傳
 
-硬體採用 Arduino Uno R3（5 V）和 HC-SR04。VCC → 5V、GND → GND、
-TRIG → D9、ECHO → D10。
+硬體採用 Arduino Uno R3（3.3 V）和 HC-SR04。VCC → 5V、GND → GND、
+TRIG → D2、ECHO → D1。
 
 將 dist/hand_sensor.ino 放進名為 hand_sensor 的資料夾，用 Arduino IDE 上傳。
 關閉序列監控視窗後，在遊戲按「連接感測器」，選 Arduino 的連接埠。
